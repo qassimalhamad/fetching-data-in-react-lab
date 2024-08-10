@@ -1,8 +1,26 @@
 // src/App.jsx
-import show from "./services/starshipService";
+import Show from "./services/starshipService";
+import StarshipList from "./components/StarshipList";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const App = () => {
-  return <h1>Hello world!</h1>;
+  const [starships, setStarships] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await Show();
+      setStarships(data.results);
+      console.log("Data", data);
+    };
+    fetchData();
+  }, []);
+  return (
+    <>
+      <h1>StarWars</h1>
+      <StarshipList starships={starships} />
+    </>
+  );
 };
 
 export default App;

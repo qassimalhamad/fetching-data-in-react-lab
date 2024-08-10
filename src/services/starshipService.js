@@ -1,19 +1,10 @@
-const API = "https://swapi.dev/api/starships/";
-
-const show = async () => {
+const API_KEY = "https://swapi.dev/api/starships/";
+export default async function Show() {
   try {
-    const res = await fetch(API);
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-
+    const res = await fetch(API_KEY);
     const data = await res.json();
-    console.log("Data", data);
+    return data;
   } catch (error) {
     console.log(error);
   }
-};
-
-show();
-export default show;
+}
